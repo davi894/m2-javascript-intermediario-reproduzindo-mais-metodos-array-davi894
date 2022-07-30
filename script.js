@@ -30,7 +30,7 @@ const arrayFind = [12, true, "alfafa", 4, 5]; // array para iteração do métod
 
 //nossa segunda callback testa se existe algum elemento maior que 15
 
-function find(array, callback) {
+ function find(array, callback) {
 
   let arrayFind = []
 
@@ -55,23 +55,25 @@ console.log(find(arrayFind, function (element) {
       return true;
     }
   }
-}))
+})) 
 
 //Método IndexOf --------
 
 const arrayIndexOf = [595, 206, "apollo", false, null, undefined, 8]; // array para iteração do método
 
 //primeira callback que procura algum elemento que seja uma string
-function callbackIndexOf(element, indice, array) {
-  if (typeof element === "string" && true) {
-    return `${element}`;
-  } else {
-    return -1
+function callbackIndexOf(element, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (typeof element === "string" && true) {
+      return element ;
+    } else {
+      return -1
+    }
   }
 }
 //segunda callback que testa se existe algum elemento igual a 3 no array
-function callbackIndexOfTwo(element,indice, array) {
-  if (element == 3 && true) {
+function callbackIndexOfTwo(element, array) {
+  if (element == 8 && true) {
     return element
   } else {
     return -1
@@ -80,13 +82,17 @@ function callbackIndexOfTwo(element,indice, array) {
 
 function indexOf(array, callback) {
 
-  return callback(array)
+  for (let i = 0; i < array.length; i++) {
+    console.log(array[i])
 
+
+    callback(array[i], array)
+  }
   //sua lógica aqui
 }
 
-console.log(indexOf("apollo", callbackIndexOf));
-console.log(indexOf(206, callbackIndexOfTwo));
+console.log(indexOf(arrayIndexOf, callbackIndexOf));
+console.log(indexOf(arrayIndexOf, callbackIndexOfTwo));
 
 //Método Includes --------
 
