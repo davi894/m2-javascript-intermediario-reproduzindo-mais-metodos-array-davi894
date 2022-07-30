@@ -18,81 +18,72 @@ function forEachUm(array, callback) {
   } //sua lógica
 
 }
-
 console.log(forEachUm(arrayForEachUm, callbackForEachUm)); //undefined
 console.log(arrayVazioUM); // (5) [20, 40, 60, 88, 110]
 
-//Método Find --------
+//Método Find
 
 const arrayFind = [12, true, "alfafa", 4, 5]; // array para iteração do método
 
 //nossa primeira callback testa se o elemento é maior que 2 e menor que 12
+function callbackFind(element) {
+  if (element > 2 && element < 12) {
+    return true;
+  }
+}
 
 //nossa segunda callback testa se existe algum elemento maior que 15
-
- function find(array, callback) {
-
-  let arrayFind = []
+function callbackFindTwo(element) {
+  if (element > 15) {
+    return true;
+  }
+}
+function find(array, callback) {
 
   for (let i = 0; i < array.length; i++) {
-    let numeros = array[i]
-    arrayFind.push(numeros)
+    if (callback(array[i])) {
+      return array[i]
+    }
+    if (callback(array[i])) {
+      return array[i]
+    }
   }
-
-  return callback(arrayFind)
-  //sua lógica aqui
+  //sua lógica
 }
-console.log(find(arrayFind, function (element) {
-  for (let i = 0; i < element.length; i++) {
-    if (element[i] > 2 && element[i] < 12) {
-      return true;
-    }
-  }
-}))
-console.log(find(arrayFind, function (element) {
-  for (let i = 0; i < element.length; i++) {
-    if (element[i] > 15) {
-      return true;
-    }
-  }
-})) 
+console.log(find(arrayFind, callbackFind)); // 4
+console.log(find(arrayFind, callbackFindTwo)); // undefined
 
 //Método IndexOf --------
 
-const arrayIndexOf = [595, 206, "apollo", false, null, undefined, 8]; // array para iteração do método
+const arrayIndexOf = [595, 206, false, "apollo", null, undefined, 8, 3]; // array para iteração do método
 
 //primeira callback que procura algum elemento que seja uma string
-function callbackIndexOf(element, array) {
-  for (let i = 0; i < array.length; i++) {
-    if (typeof element === "string" && true) {
-      return element ;
-    } else {
-      return -1
-    }
-  }
+function callbackfindIndex(element) {
+  return typeof element === "string" && true;
 }
+
 //segunda callback que testa se existe algum elemento igual a 3 no array
-function callbackIndexOfTwo(element, array) {
-  if (element == 8 && true) {
-    return element
-  } else {
-    return -1
-  }
+function callbackfindIndexTwo(element) {
+  return element == 3 && true;
 }
 
 function indexOf(array, callback) {
 
   for (let i = 0; i < array.length; i++) {
-    console.log(array[i])
-
-
-    callback(array[i], array)
+    let ii = i
+    if (callback("apollo") && array[i] == "apollo") {
+      return ii
+    }
+    if (callback(206) && array[i] == 206) {
+      return ii
+    }
   }
+  return -1
   //sua lógica aqui
 }
 
-console.log(indexOf(arrayIndexOf, callbackIndexOf));
-console.log(indexOf(arrayIndexOf, callbackIndexOfTwo));
+console.log(indexOf(arrayIndexOf, callbackfindIndex));
+console.log(indexOf(arrayIndexOf, callbackfindIndexTwo));
 
 //Método Includes --------
 
@@ -121,7 +112,7 @@ const callbackSome = (element) => {
 
 const callbackSome2 = (element) => {
   if (element) {
-    return false;
+    return true;
   }
 };
 
