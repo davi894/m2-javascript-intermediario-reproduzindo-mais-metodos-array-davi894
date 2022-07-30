@@ -27,18 +27,8 @@ console.log(arrayVazioUM); // (5) [20, 40, 60, 88, 110]
 const arrayFind = [12, true, "alfafa", 4, 5]; // array para iteração do método
 
 //nossa primeira callback testa se o elemento é maior que 2 e menor que 12
-function callbackFind(element) {
-  if (element > 2 && element < 12) {
-    return true;
-  }
-}
 
 //nossa segunda callback testa se existe algum elemento maior que 15
-function callbackFindTwo(element) {
-  if (element > 15) {
-    return true;
-  }
-}
 
 function find(array, callback) {
 
@@ -58,46 +48,45 @@ console.log(find(arrayFind, function (element) {
       return true;
     }
   }
-
 }))
 console.log(find(arrayFind, function (element) {
   for (let i = 0; i < element.length; i++) {
     if (element[i] > 15) {
-      return false;
+      return true;
     }
   }
 }))
-// console.log(find(arrayFind, callbackFind));
-// console.log(find(arrayFind, callbackFindTwo));
 
 //Método IndexOf --------
 
 const arrayIndexOf = [595, 206, "apollo", false, null, undefined, 8]; // array para iteração do método
 
 //primeira callback que procura algum elemento que seja uma string
-function callbackIndexOf(element) {
-  return typeof element === "string" && true;
+function callbackIndexOf(element, indice, array) {
+  if (typeof element === "string" && true) {
+    return `${element}`;
+  } else {
+    return -1
+  }
 }
-
 //segunda callback que testa se existe algum elemento igual a 3 no array
-function callbackIndexOfTwo(element) {
-  return element == 3 && true;
+function callbackIndexOfTwo(element,indice, array) {
+  if (element == 3 && true) {
+    return element
+  } else {
+    return -1
+  }
 }
 
 function indexOf(array, callback) {
 
-  let arrayIndexOf = []
+  return callback(array)
 
-  for (let i = 0; i < array.length; i++) {
-    arrayIndexOf.push(array[i])
-  }
-
-  return callback(arrayIndexOf)
   //sua lógica aqui
 }
 
-console.log(indexOf(arrayIndexOf, callbackIndexOf));
-console.log(indexOf(arrayIndexOf, callbackIndexOfTwo));
+console.log(indexOf("apollo", callbackIndexOf));
+console.log(indexOf(206, callbackIndexOfTwo));
 
 //Método Includes --------
 
@@ -119,6 +108,7 @@ console.log(includes(arrayIncludes, 500)); //false
 
 //Método some --------
 const arrySome = [12, 82, 563, 414, null]; // array para iteração do método
+
 const callbackSome = (element) => {
   return element > 82 && true;
 };
@@ -131,12 +121,10 @@ const callbackSome2 = (element) => {
 
 function some(array, callback) {
 
-  let arraySoma = []
-
   for (let i = 0; i < array.length; i++) {
-    arraySoma.push(array[i])
+
+    return callback(array[i])
   }
-  return callback(arraySoma)
   //sua lógica aqui
 }
 
