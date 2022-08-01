@@ -10,8 +10,6 @@ function callbackForEachUm(element) {
 
 function forEachUm(array, callback) {
 
-  /*  let oisis = []  */
-
   for (let i = 0; i < array.length; i++) {
     callback(array[i])
 
@@ -55,7 +53,7 @@ console.log(find(arrayFind, callbackFindTwo)); // undefined
 
 //Método IndexOf --------
 
-const arrayIndexOf = [595, 206, false, "apollo", null, undefined, 8, 3]; // array para iteração do método
+const arrayIndexOf = [595, 206, false, "apollo", null, undefined, 8]; // array para iteração do método
 
 //primeira callback que procura algum elemento que seja uma string
 function callbackfindIndex(element) {
@@ -70,12 +68,8 @@ function callbackfindIndexTwo(element) {
 function indexOf(array, callback) {
 
   for (let i = 0; i < array.length; i++) {
-    let ii = i
-    if (callback("apollo") && array[i] == "apollo") {
-      return ii
-    }
-    if (callback(206) && array[i] == 206) {
-      return ii
+    if (callback(array[i])) {
+      return i
     }
   }
   return -1
