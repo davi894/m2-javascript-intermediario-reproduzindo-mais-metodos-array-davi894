@@ -98,13 +98,15 @@ console.log(includes(arrayIncludes, "duck")); //true
 console.log(includes(arrayIncludes, 500)); //false
 
 //Método some --------
-const arrySome = [12, 82, 563, 414, null]; // array para iteração do método
+const arrySome = [12, 563, 82, 414, null]; // array para iteração do método
 
-const callbackSome = (element) => {
-  return element > 82 && true;
+const callbackSome = (element, index, array) => {
+  if (element > 83) {
+    return true;
+  }
 };
 
-const callbackSome2 = (element) => {
+const callbackSome2 = (element, index, array) => {
   if (element) {
     return true;
   }
@@ -113,10 +115,11 @@ const callbackSome2 = (element) => {
 function some(array, callback) {
 
   for (let i = 0; i < array.length; i++) {
-
-    return callback(array[i])
+    if (callback(array[i], i, array)) {
+     return callback(array[i], i, array)
+    } 
   }
-  //sua lógica aqui
+  return false
 }
 
 console.log(some(arrySome, callbackSome));
@@ -140,34 +143,3 @@ console.log(arrayJoin, join(arrayJoin, " "));
 console.log(arrayJoin, join(arrayJoin, ""));
 console.log(arrayJoin, join(arrayJoin, "-"));
 
-//Método forEach --------
-//const arrayForEach = [10, 20, 30, 44, 55]; // array para iteração do método
-
-//array em que nossa callback vai colocar os números multiplicados
-// const arrayVazio = [];
-//nossa callback
-//function callbackForEach(element) {
-//  return arrayVazio.push(element * 2);
-//}
-
-//function forEach(array, callback) {
-
-  //let arrayUm = []
-
-//  for (let i = 0; i < array.length; i++) {
-//    let numero = array[i]
- //   arrayUm.push(numero)
- /// }
-  //sua lógica aqui
- // return callback(arrayUm)
-//}
-//console.log(forEach(arrayForEach, function (element) {
-//  let arrayDois = []
- // for (let i = 0; i < element.length; i++) {
-//    arrayDois.push(element[i] * 2);
- // }
- // return arrayDois
-//}))
-/* console.log(forEach(arrayForEach, callbackForEach)); //undefined
-console.log(arrayVazio); 
- */
